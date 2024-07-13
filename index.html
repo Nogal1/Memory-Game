@@ -1,19 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-  <!DOCTYPE html>
-  <html lang="en">
-  
-  <head>
-    <meta charset="UTF-8" />
-    <title>Memory Game!</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  
-  <body>
-    <h1>Memory Game!</h1>
-    <div id="game"></div>
-    <script src="script.js"></script>
-  </body>
-  
-  </html>
 
+<head>
+  <meta charset="UTF-8" />
+  <title>Memory Game!</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <h1>Memory Game!</h1>
+  <select id="difficulty-select">
+    <option value="easy">Easy - 8 Cards</option>
+    <option value="medium" selected>Medium - 16 Cards</option>
+    <option value="hard">Hard - 24 Cards</option>
+  </select>
+  <button id="start-game">Start Game</button>
+  <div>Score: <span id="score">0</span></div>
+  <div id="game">
+  </div>
+  <button id="restart-game" style="display: none;">
+    Restart Game
+  </button>
+  <script src="script.js"></script>
+</body>
+
+</html>
