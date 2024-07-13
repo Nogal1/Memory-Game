@@ -1,7 +1,51 @@
 #game div {
-  border: 1px solid black;
-  width: 15%;
-  height: 200px;
+  width: 100px;
+  height: 100px;
   margin: 10px;
   display: inline-block;
+  background-color: #2c3e50;
+  /* Default color when not flipped */
+  cursor: pointer;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+#game div.flipped {
+  transform: rotateY(180deg);
+  /* Flip the card by 180 degrees */
+}
+
+/* Front and back styling */
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  /* Hide the back face when it's turned away */
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+
+.card-front {
+  background-color: #2c3e50;
+  /* Default hidden color */
+}
+
+.card-back {
+  transform: rotateY(180deg);
+    /* Align the back properly when flipped */
+  background-color: #fff;
+  /* Color shown when flipped */
+  color: #333;
+  /* Text color when flipped */
+}
+#game {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
 }

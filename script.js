@@ -58,9 +58,54 @@ function createDivsForColors(colorArray) {
 }
 
 // TODO: Implement this function!
+// Assuming these are declared at a higher scope if needed outside handleCardClick
+let firstCard = null;
+let secondCard = null;
+let hasFlippedCard = false;
+let lockBoard = false;
+
 function handleCardClick(event) {
-  // you can use event.target to see which element was clicked
-  console.log("you just clicked", event.target);
+  if (lockBoard) return;
+  if (event.target === firstCard) return;
+
+  let clickedCard = event.target;
+
+  // Show color only on flip
+  clickedCard.style.backgroundColor = clickedCard.classList[0]; // Color is based on the class
+
+  if (!hasFlippedCard) {
+    // First click
+    hasFlippedCard = true;
+    firstCard = clickedCard;
+    firstCard.classList.add('flipped');
+  } else {
+    // Second click
+    secondCard = clickedCard;
+    secondCard.classList.add('flipped');
+    lockBoard = true;
+
+    // Check if cards match
+    if (firstCard.className === secondCard.className) {
+      // It's a match!
+      firstCard.removeEventListener('click', handleCardClick);
+      secondCard.removeEventListener('click', handleCardClick);
+      resetBoard();
+    } else {
+      // Not a match
+      setTimeout(() => {
+        firstCard.classList.remove('flipped');
+        secondCard.classList.remove('flipped');
+        firstCard.style.backgroundColor = ''; // Hide color
+        secondCard.style.backgroundColor = ''; // Hide color
+        resetBoard();
+      }, 1500);
+    }
+  }
+}
+
+function resetBoard() {
+  [hasFlippedCard, lockBoard] = [false, false];
+  [firstCard, secondCard] = [null, null];
 }
 
 // when the DOM loads
