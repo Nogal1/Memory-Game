@@ -107,7 +107,7 @@ document.addEventListener("DOMContentLoaded", function () {
       if (score > highScore) {
         localStorage.setItem('highScore', score);
         if (cardsFlipped === colorPairs.length) alert("New high score!");
-      }
+      } 
     }
   }
 });
